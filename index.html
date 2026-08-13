@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090817">
+<title>Cute Wishing — Cinematic Birthday Wishes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="background" aria-hidden="true"><div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div></div>
+<div id="stars" aria-hidden="true"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<main id="app">
+<section id="creator" class="screen creator-screen">
+  <header class="site-header">
+    <div class="logo">CUTE <span>WISHING</span></div>
+    <div class="header-pill">BIRTHDAY STORIES</div>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Cinematic Birthday Wishes</p>
+    <h1>Turn a birthday wish into<br><span>a little memory.</span></h1>
+    <p>Make a tiny magical story they can open from one beautiful link.</p>
+  </div>
+
+  <div class="creator-layout">
+    <form id="wishForm" class="glass form-card" novalidate>
+      <div class="card-title">
+        <div><span class="step">01</span><h2>Create your wish</h2></div>
+        <span class="spark">✦</span>
+      </div>
+
+      <div class="fields">
+        <label>Birthday person's name
+          <input id="person" autocomplete="off" placeholder="Enter name">
+        </label>
+        <label>Your name <small>optional</small>
+          <input id="sender" autocomplete="off" placeholder="Your name">
+        </label>
+        <label>Birthday date
+          <input id="date" type="date">
+        </label>
+        <label>Special message
+          <textarea id="message" maxlength="1800" placeholder="Write your message…"></textarea>
+        </label>
+      </div>
+
+      <div class="divider"><span>MAKE IT YOURS</span></div>
+
+      <label class="upload">
+        <span class="field-label">Optional photo <small>optional</small></span>
+        <input id="photo" type="file" accept="image/*">
+        <span class="upload-box"><b>＋</b><span><strong id="photoLabel">Add a memory</strong><small>Compressed on your device</small></span></span>
+      </label>
+
+      <div class="field-label">Theme</div>
+      <div class="theme-picker">
+        <button type="button" class="theme active" data-theme="aurora" aria-pressed="true"><i></i><span>Aurora</span></button>
+        <button type="button" class="theme" data-theme="nebula" aria-pressed="false"><i></i><span>Nebula</span></button>
+        <button type="button" class="theme" data-theme="sunset" aria-pressed="false"><i></i><span>Afterglow</span></button>
+      </div>
+
+      <div class="settings">
+        <label class="setting">Music <small>tap to start</small><input id="music" type="checkbox" checked><span class="switch"></span></label>
+        <label class="setting">Voice <small>optional</small><input id="voice" type="checkbox"><span class="switch"></span></label>
+      </div>
+
+      <button class="primary create-btn" type="submit">CREATE MY WISH <span>✦</span></button>
+    </form>
+
+    <aside class="glass preview-card">
+      <div class="preview-head"><span>LIVE PREVIEW</span><span class="live"><i></i> LIVE</span></div>
+      <div class="preview">
+        <div class="preview-glow"></div>
+        <div class="preview-copy">
+          <span>Someone special has a birthday…</span>
+          <strong id="previewName">Your surprise</strong>
+          <p id="previewMsg">Your message will appear here.</p>
+        </div>
+      </div>
+      <div class="preview-foot">Your details stay on this device until you create the link.</div>
+    </aside>
+  </div>
+</section>
+
+<section id="movie" class="screen movie-screen hidden">
+  <div class="movie-controls"><button id="musicBtn" class="round-btn" aria-label="Music">♪</button><button id="creatorBtn" class="ghost-btn">Creator</button></div>
+  <div id="movieStage" class="movie-stage">
+    <div class="cinematic-light"></div>
+    <div id="sceneIntro" class="scene active"><p class="eyebrow">A little secret is waiting…</p><h2>Someone special<br>has a birthday.</h2><button id="openBtn" class="primary">OPEN THE SURPRISE <span>✦</span></button></div>
+    <div id="sceneName" class="scene"><p class="eyebrow">Just for you</p><h2 id="nameReveal"></h2></div>
+    <div id="sceneCountdown" class="scene"><p class="eyebrow">Get ready</p><div id="countNum" class="count-num">3</div></div>
+    <div id="sceneBirthday" class="scene">
+<div class="light-burst"></div>
+<div class="birthday-sheen" aria-hidden="true"></div>
+<p class="eyebrow">Your moment has arrived</p>
+<div class="birthday-title-wrap"><span class="title-spark">✦</span><h2>HAPPY BIRTHDAY</h2><span class="title-spark">✦</span></div>
+<h3 id="birthdayName"></h3>
+<div class="cake" aria-hidden="true"><div class="flame"></div><div class="candle"></div><div class="cake-top"></div><div class="cake-body"><i></i><i></i><i></i></div><div class="cake-plate"></div></div>
+<div id="todayBadge" class="today-badge">IT'S TODAY · ✦</div>
+</div>
+    <div id="sceneDate" class="scene"><p class="eyebrow">Today is not just another day…</p><div class="date-card"><span>YOUR SPECIAL DAY</span><b id="prettyDate"></b><small id="dateStatus"></small><div id="countdown" class="countdown"></div></div></div>
+    <div id="scenePhoto" class="scene"><div class="photo-frame"><img id="heroPhoto" alt="Birthday memory"></div><p class="eyebrow">A memory, kept close.</p></div>
+    <div id="sceneLetter" class="scene"><div id="envelope" class="envelope"><div class="env-back"></div><div class="paper"><p id="letterText"></p><span id="letterFrom"></span></div><div class="env-flap"></div><div class="env-front"></div></div><button id="voiceBtn" class="secondary hidden">◉ LISTEN TO THE WISH</button></div>
+    <div id="sceneFinal" class="scene"><p class="eyebrow">Once again,</p><h2>HAPPY BIRTHDAY</h2><h3 id="finalName"></h3><p class="made">Made with a little magic ✦</p><div class="final-actions"><button id="replay" class="secondary">Replay Surprise</button><button id="share" class="secondary">Share Wish</button><button id="qr" class="secondary">Create QR</button><button id="create" class="primary">Create Your Own Wish ✦</button></div></div>
+  </div>
+</section>
+</main>
+
+<div id="linkModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop" data-close="modal"></div>
+  <section class="modal-card glass" role="dialog" aria-modal="true" aria-labelledby="linkTitle">
+    <button class="modal-close" data-close="modal" aria-label="Close">×</button>
+    <div class="modal-icon">✦</div><p class="eyebrow">LINK READY</p>
+    <h2 id="linkTitle">Your birthday surprise<br>is ready to share.</h2>
+    <div class="link-box" id="linkText"></div>
+    <div class="modal-actions"><button id="copyLink" class="primary">COPY LINK</button><button id="openLink" class="secondary">OPEN SURPRISE</button></div>
+    <button class="modal-close-text" data-close="modal">Close</button>
+  </section>
+</div>
+
+<div id="qrModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop" data-close="qr"></div>
+  <section class="modal-card glass" role="dialog" aria-modal="true">
+    <button class="modal-close" data-close="qr">×</button><p class="eyebrow">SHARE THE MOMENT</p><h2>Scan to open<br>the surprise.</h2>
+    <div id="qrBox"></div><strong id="qrName"></strong><small class="modal-note">QR generation stays on this device.</small>
+    <button id="qrDownload" class="primary">SAVE QR</button>
+  </section>
+</div>
+
+<audio id="bgMusic" preload="auto" loop src="birthday-song.m4a"></audio>
+<script src="script.js"></script>
+</body>
+</html>
